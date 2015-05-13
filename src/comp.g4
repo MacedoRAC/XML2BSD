@@ -265,7 +265,8 @@ offsetthreshold_node : STARTNODE OFFSETTHRESHOLD offsetthreshold_attr* ENDNODE;
 
 offsetthreshold_attr : end_attr | length_attr | width_attr | surface_attr;
 
-end_attr : 'end=' ASPAS ('PRIMARY' | 'SECONDARY') ASPAS;
+end_attr : 'end=' ASPAS end_attr_values ASPAS;
+end_attr_values : 'PRIMARY' | 'SECONDARY';
 
 length_attr : 'length=' value_alt;
 
@@ -346,7 +347,7 @@ runwaystart_node : STARTNODE 'RunwayStart' type_runwaystart? lat_attr lon_attr a
 
 type_runwaystart : TYPE ASPAS 'RUNWAY' ASPAS;
 
-end_runwaynode : 'end=' ASPAS ('PRIMARY'|'SECONDARY') ASPAS ; 
+end_runwaynode : 'end=' ASPAS end_attr_values ASPAS ; 
 
 /* GLIDESLOPE NODE */
 glideslope_node : STARTNODE GLIDESLOPE glideslope_attr ENDNODE;
@@ -363,11 +364,14 @@ visualmodel_node : VISUALMODEL visualmodel_attr CLOSE_TAG biasxyz_node CLOSE_VIS
 
 visualmodel_attr : heading_attr | imagecomplexity_visualmodel | name_visualmodel | instanceid_visualmodel;
 
-imagecomplexity_visualmodel : 'imageComplexity=' ASPAS ('VERY_SPARSE' | 'SPARSE' | 'NORMAL' | 'DENSE' | 'VERY_DENSE') ASPAS;
+imagecomplexity_visualmodel : 'imageComplexity=' ASPAS imagecomplexity_visualmodel_values ASPAS;
+imagecomplexity_visualmodel_values : 'VERY_SPARSE' | 'SPARSE' | 'NORMAL' | 'DENSE' | 'VERY_DENSE';
 
-name_visualmodel : 'name=' ASPAS (STRING '-' STRING '-' STRING '-' STRING '-' STRING) ASPAS;
+name_visualmodel : 'name=' ASPAS name_visualmodel_values ASPAS;
+name_visualmodel_values : STRING '-' STRING '-' STRING '-' STRING '-' STRING;
 
-instanceid_visualmodel : 'instanceId=' ASPAS (STRING '-' STRING '-' STRING '-' STRING '-' STRING) ASPAS;
+instanceid_visualmodel : 'instanceId=' ASPAS instanceid_visualmodel_values ASPAS;
+instanceid_visualmodel_values : STRING '-' STRING '-' STRING '-' STRING '-' STRING;
 
 /* BIAS_XYZ NODE */
 biasxyz_node : STARTNODE BIASXYZ bias_attr ENDNODE;
@@ -399,7 +403,8 @@ waypoint_node : WAYPOINT waypoint_attr CLOSE_TAG route_node* CLOSE_WAYPOINT;
 
 waypoint_attr : lat_attr | lon_attr | waypointtype_waypoint | magvar_attr | waypointregion_waypoint | waypointident_waypoint;
 
-waypointtype_waypoint : 'waypointType=' ASPAS ('NAMED' | 'UNNAMED' | 'VOR' | 'NDB' | 'OFF_ROUTE' | 'IAF' | 'FAF') ASPAS;
+waypointtype_waypoint : 'waypointType=' ASPAS waypointtype_waypoint_values ASPAS;
+waypointtype_waypoint_values : 'NAMED' | 'UNNAMED' | 'VOR' | 'NDB' | 'OFF_ROUTE' | 'IAF' | 'FAF';
 
 waypointregion_waypoint : 'waypointRegion=' ASPAS STRING ASPAS; /* falta semantica */
 
@@ -412,7 +417,8 @@ route_nodes : previous_node | next_node;
 
 route_attr : routetype | name_route;
 
-routetype : 'routeType=' ASPAS ('VICTOR' | 'JET' | 'BOTH') ASPAS;
+routetype : 'routeType=' ASPAS routetype_values ASPAS;
+routetype_values : 'VICTOR' | 'JET' | 'BOTH';
 
 name_route : 'name=' ASPAS STRING ASPAS; /* falta semantica */
 
@@ -436,11 +442,12 @@ length_helipad : 'length=' NUM '.' NUM ('M'|'F')? ;
 
 width_helipad : 'width=' NUM '.' NUM ('M'|'F')? ;
 
-type_helipad : TYPE ('NONE'|'CIRCLE'|'H'|'MEDICAL'|'SQUARE');
+type_helipad : 'type=' type_helipad_values ;
+type_helipad_values : 'NONE'|'CIRCLE'|'H'|'MEDICAL'|'SQUARE';
 
-closed_helipad : 'closed=' ('TRUE'|'FALSE');
+closed_helipad : 'closed=' boolean_value;
 
-transparent_helipad : 'transparent= ' ('TRUE'|'FALSE');
+transparent_helipad : 'transparent= ' boolean_value;
 
 red_helipad : 'red=' NUM; /*FALTA SEMANTICA*/
 
@@ -452,13 +459,15 @@ blue_helipad : 'blue=' NUM; /*FALTA SEMANTICA*/
 /* TAXiWAY_POINT NODE */
 taxiwaypoint_node : STARTNODE TAXIWAYPOINT taxiwaypoint_attr* ENDNODE;
 
-taxiwaypoint_attr: index_taxiway | type_taxiway | oriantation_taxiway | lat_attr | lon_attr | biasX | biasZ;
+taxiwaypoint_attr: index_taxiway | type_taxiway | orientation_taxiway | lat_attr | lon_attr | biasX | biasZ;
 
 index_taxiway : 'index=' ASPAS NUM ASPAS; /* falta semantica */
 
-type_taxiway : TYPE ASPAS ('NORMAL' | 'HOLD_SHORT' | 'ILS_HOLD_SHORT' | 'HOLD_SHORT_NO_DRAW' | 'ILS_HOLD_SHORT_NO_DRAW') ASPAS;
+type_taxiway : TYPE ASPAS type_taxiway_values ASPAS;
+type_taxiway_values : 'NORMAL' | 'HOLD_SHORT' | 'ILS_HOLD_SHORT' | 'HOLD_SHORT_NO_DRAW' | 'ILS_HOLD_SHORT_NO_DRAW';
 
-oriantation_taxiway : 'orientation=' ASPAS ('FORWARD' | 'REVERSE') ASPAS;
+orientation_taxiway : 'orientation=' ASPAS orientation_taxiway_values ASPAS;
+orientation_taxiway_values : 'FORWARD' | 'REVERSE';
 
 /*TAXIWAYPARKING NODE  */
 taxiwayparking_node : STARTNODE TAXIWAYPARKING taxiwayparking_attr* ENDNODE;
@@ -467,8 +476,11 @@ taxiwayparking_attr : index_taxiway | lat_attr | lon_attr | biasX | biasZ | head
 
 radius_taxiway : 'radius=' ASPAS NUM '.' NUM ASPAS; /* semantica */
 
-type_parking : TYPE ASPAS ('NONE' | 'DOCK_GA' | 'FUEL' | 'GATE_HEAVY' | 'GATE_MEDIUM' | 'GATE_SMALL' | 'RAMP_CARGO' | 'RAMP_GA' | 'RAMP_GA_LARGE' | 'RAMP_GA_MEDIUM' | 'RAMP_GA_SMALL' | 'RAMP_MIL_CARGO' | 'RAMP_MIL_COMBAT' | 'VEHICLE') ASPAS;
-name_parking : 'name=' ASPAS ('PARKING' | 'DOCK' | 'GATE' | ('GATE_' UPPER) | 'NONE' | 'N_PARKING' | 'NE_PARKING' | 'NW_PARKING' | 'SE_PARKING' | 'SW_PARKING' | 'W_PARKING' | 'E_PARKING') ASPAS;
+type_parking : TYPE ASPAS type_parking_values ASPAS;
+type_parking_values : 'NONE' | 'DOCK_GA' | 'FUEL' | 'GATE_HEAVY' | 'GATE_MEDIUM' | 'GATE_SMALL' | 'RAMP_CARGO' | 'RAMP_GA' | 'RAMP_GA_LARGE' | 'RAMP_GA_MEDIUM' | 'RAMP_GA_SMALL' | 'RAMP_MIL_CARGO' | 'RAMP_MIL_COMBAT' | 'VEHICLE' ;
+
+name_parking : 'name=' ASPAS name_parking_values ASPAS;
+name_parking_values : 'PARKING' | 'DOCK' | 'GATE' | 'GATE_UPPER' | 'NONE' | 'N_PARKING' | 'NE_PARKING' | 'NW_PARKING' | 'SE_PARKING' | 'SW_PARKING' | 'W_PARKING' | 'E_PARKING';
 
 number_parking : 'number=' ASPAS NUM ASPAS; /* semantica */
 
@@ -496,9 +508,10 @@ name_taxiname : 'name=' ASPAS STRING ASPAS; /* semantica */
 /* TAXIWAY PATH NODE */
 taxiwaypath_node : STARTNODE TAXIWAYPATH taxiwaypath_attr* ENDNODE;
 
-taxiwaypath_attr : type_taxiwaypath | start_taxiwaypath | end_taxiwaypath | width_attr | weightlimit_taxiwaypath | surface_attr | drawsurface_apron | drawdetail_apron | centerline_taxiwaypath | centerlinelighted_taxiwaypath | leftedge_taxiwaypath | leftedgelighted_taxiwaypath | rightedge_taxiwaypath | rightedgelighted_taxiwaypath | runway_number | designator_start | name_taxiwaypath;
+taxiwaypath_attr : type_taxiwaypath | start_taxiwaypath | end_taxiwaypath | width_attr | weightlimit_taxiwaypath | surface_attr | drawsurface | drawdetail | centerline_taxiwaypath | centerlinelighted_taxiwaypath | leftedge_taxiwaypath | leftedgelighted_taxiwaypath | rightedge_taxiwaypath | rightedgelighted_taxiwaypath | runway_number | designator | name_taxiwaypath;
 
-type_taxiwaypath : TYPE ASPAS ('RUNWAY' | 'PARKING' | 'TAXI' | 'PATH' | 'CLOSED' | 'VEHICLE') ASPAS;
+type_taxiwaypath : TYPE ASPAS type_taxiwaypath_values ASPAS;
+type_taxiwaypath_values : 'RUNWAY' | 'PARKING' | 'TAXI' | 'PATH' | 'CLOSED' | 'VEHICLE';
 
 start_taxiwaypath : 'start=' ASPAS NUM ASPAS; /* semantica */
 
@@ -520,3 +533,8 @@ rightedgelighted_taxiwaypath : 'rightEdgeLighted=' ASPAS boolean_value ASPAS; /*
 
 name_taxiwaypath : 'name=' ASPAS STRING ASPAS; /* semantica */
 
+drawsurface : 'drawSurface=' ASPAS boolean_value ASPAS;
+
+drawdetail : 'drawDetail=' ASPAS boolean_value ASPAS;
+
+designator : 'designator=' ASPAS designator_values ASPAS;
