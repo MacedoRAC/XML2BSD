@@ -3,14 +3,14 @@ import org.antlr.v4.runtime.tree.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        COMP lexer = new COMP(new ANTLRFileStream("ficheiro de teste"));
-        CompParser parser = new CompParser(new CommonTokenStream(lexer));
+        compLexer lexer = new compLexer(new ANTLRFileStream("Portugal CentroNorte.bgl.xml"));
+        compParser parser = new compParser(new CommonTokenStream(lexer));
         
 
         ParseTree tree = parser.document();
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        CompListener listener = new CompListener();
+        MyCompListener listener = new MyCompListener();
         walker.walk(listener, tree);
     }
 }

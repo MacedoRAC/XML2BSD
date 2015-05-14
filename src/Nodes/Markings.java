@@ -209,6 +209,14 @@ public class Markings {
             this.touchdown = false;
     }
 
+    public void setAlternateTouchdown(String touchdown) {
+        touchdown = touchdown.replaceAll("^\"|\"$", "");
+        if(touchdown == "TRUE" || touchdown == "YES")
+            this.alternateTouchdown = true;
+        else
+            this.alternateTouchdown = false;
+    }
+
     public void setDashes(String dashes) {
         dashes = dashes.replaceAll("^\"|\"$", "");
         if(dashes == "TRUE" || dashes == "YES")

@@ -1,4 +1,4 @@
-// Generated from C:\Users\ASUS\Desktop\comp é merda\XML2BSD\src\comp.g4 by ANTLR 4.5
+// Generated from comp.g4 by ANTLR 4.5
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
