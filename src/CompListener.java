@@ -338,15 +338,15 @@ public interface compListener extends ParseTreeListener {
 	 */
 	void exitPrimary_designator(compParser.Primary_designatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link compParser#secondary_values}.
+	 * Enter a parse tree produced by {@link compParser#secondary_designator}.
 	 * @param ctx the parse tree
 	 */
-	void enterSecondary_values(compParser.Secondary_valuesContext ctx);
+	void enterSecondary_designator(compParser.Secondary_designatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link compParser#secondary_values}.
+	 * Exit a parse tree produced by {@link compParser#secondary_designator}.
 	 * @param ctx the parse tree
 	 */
-	void exitSecondary_values(compParser.Secondary_valuesContext ctx);
+	void exitSecondary_designator(compParser.Secondary_designatorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compParser#boolean_value}.
 	 * @param ctx the parse tree
@@ -377,6 +377,16 @@ public interface compListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRunway_markings(compParser.Runway_markingsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compParser#designator_attr}.
+	 * @param ctx the parse tree
+	 */
+	void enterDesignator_attr(compParser.Designator_attrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compParser#designator_attr}.
+	 * @param ctx the parse tree
+	 */
+	void exitDesignator_attr(compParser.Designator_attrContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compParser#markings_node}.
 	 * @param ctx the parse tree
@@ -598,15 +608,15 @@ public interface compListener extends ParseTreeListener {
 	 */
 	void exitSystem_approachlights(compParser.System_approachlightsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link compParser#scrobes_approachlights}.
+	 * Enter a parse tree produced by {@link compParser#strobes_approachlights}.
 	 * @param ctx the parse tree
 	 */
-	void enterScrobes_approachlights(compParser.Scrobes_approachlightsContext ctx);
+	void enterStrobes_approachlights(compParser.Strobes_approachlightsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link compParser#scrobes_approachlights}.
+	 * Exit a parse tree produced by {@link compParser#strobes_approachlights}.
 	 * @param ctx the parse tree
 	 */
-	void exitScrobes_approachlights(compParser.Scrobes_approachlightsContext ctx);
+	void exitStrobes_approachlights(compParser.Strobes_approachlightsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compParser#reil_approachlights}.
 	 * @param ctx the parse tree
@@ -848,6 +858,16 @@ public interface compListener extends ParseTreeListener {
 	 */
 	void exitRunwaystart_node(compParser.Runwaystart_nodeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link compParser#runwaystart_attr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRunwaystart_attr(compParser.Runwaystart_attrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compParser#runwaystart_attr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRunwaystart_attr(compParser.Runwaystart_attrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link compParser#type_runwaystart}.
 	 * @param ctx the parse tree
 	 */
@@ -1058,6 +1078,16 @@ public interface compListener extends ParseTreeListener {
 	 */
 	void exitRunwayalias_attr(compParser.Runwayalias_attrContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link compParser#number_attr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber_attr(compParser.Number_attrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compParser#number_attr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber_attr(compParser.Number_attrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link compParser#vertex_node}.
 	 * @param ctx the parse tree
 	 */
@@ -1257,6 +1287,16 @@ public interface compListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHelipad_node(compParser.Helipad_nodeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compParser#helipad_attr}.
+	 * @param ctx the parse tree
+	 */
+	void enterHelipad_attr(compParser.Helipad_attrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compParser#helipad_attr}.
+	 * @param ctx the parse tree
+	 */
+	void exitHelipad_attr(compParser.Helipad_attrContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compParser#length_helipad}.
 	 * @param ctx the parse tree
@@ -1757,14 +1797,4 @@ public interface compListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDrawdetail(compParser.DrawdetailContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compParser#designator}.
-	 * @param ctx the parse tree
-	 */
-	void enterDesignator(compParser.DesignatorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compParser#designator}.
-	 * @param ctx the parse tree
-	 */
-	void exitDesignator(compParser.DesignatorContext ctx);
 }

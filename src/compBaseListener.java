@@ -412,13 +412,13 @@ public class compBaseListener implements compListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSecondary_values(compParser.Secondary_valuesContext ctx) { }
+	@Override public void enterSecondary_designator(compParser.Secondary_designatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSecondary_values(compParser.Secondary_valuesContext ctx) { }
+	@Override public void exitSecondary_designator(compParser.Secondary_designatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -455,6 +455,18 @@ public class compBaseListener implements compListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRunway_markings(compParser.Runway_markingsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDesignator_attr(compParser.Designator_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDesignator_attr(compParser.Designator_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -724,13 +736,13 @@ public class compBaseListener implements compListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterScrobes_approachlights(compParser.Scrobes_approachlightsContext ctx) { }
+	@Override public void enterStrobes_approachlights(compParser.Strobes_approachlightsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitScrobes_approachlights(compParser.Scrobes_approachlightsContext ctx) { }
+	@Override public void exitStrobes_approachlights(compParser.Strobes_approachlightsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1024,6 +1036,18 @@ public class compBaseListener implements compListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRunwaystart_attr(compParser.Runwaystart_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRunwaystart_attr(compParser.Runwaystart_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType_runwaystart(compParser.Type_runwaystartContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1276,6 +1300,18 @@ public class compBaseListener implements compListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNumber_attr(compParser.Number_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumber_attr(compParser.Number_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVertex_node(compParser.Vertex_nodeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1511,6 +1547,18 @@ public class compBaseListener implements compListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitHelipad_node(compParser.Helipad_nodeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterHelipad_attr(compParser.Helipad_attrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHelipad_attr(compParser.Helipad_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2111,18 +2159,6 @@ public class compBaseListener implements compListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDrawdetail(compParser.DrawdetailContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDesignator(compParser.DesignatorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDesignator(compParser.DesignatorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

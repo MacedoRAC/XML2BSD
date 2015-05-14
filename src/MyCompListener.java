@@ -438,28 +438,6 @@ public class MyCompListener extends compBaseListener {
         }
     }
 
-
-    @Override
-    public void enterRunway_markings(compParser.Runway_markingsContext ctx) {
-        try {
-            String attribute = ctx.runway_markings().getText();
-
-            switch (attribute) {
-                case "primaryMarkingBias=":
-                    runwayNode.setPrimMarkingBias(ctx.RUNWAY_PRIMARY_MARKING_BIAS.getText());
-                    break;
-                case "secondaryMarkingBias=":
-                    runwayNode.setSecMarkBias(ctx.RUNWAY_SECONDARY_MARKING_BIAS.getText());
-                    break;
-                default:
-                    break;
-            }
-        } catch (IllegalArgumentException e) {
-            int errorLine = ctx.ASPAS().getSymbol().getLine();
-            System.out.println(errorLine + ": " + e.getMessage());
-        }
-    }
-
     /* MARKINGS */
     @Override
     public void enterRunway_markings(compParser.Runway_markingsContext ctx) {
@@ -523,6 +501,12 @@ public class MyCompListener extends compBaseListener {
                     break;
                 case "secondaryStol=":
                     markingsNode.setSecondaryStol(value);
+                    break;
+                case "primaryMarkingBias=":
+                    runwayNode.setPrimMarkingBias(ctx.RUNWAY_PRIMARY_MARKING_BIAS.getText());
+                    break;
+                case "secondaryMarkingBias=":
+                    runwayNode.setSecMarkBias(ctx.RUNWAY_SECONDARY_MARKING_BIAS.getText());
                     break;
                 default:
                     break;
