@@ -345,34 +345,6 @@ RED=344
 GREEN=345
 BLUE=346
 WS=347
-TEST_RADIUS=348
-CLOSE_SERVICES=349
-FUEL_TYPE=350
-FUEL_AVAILABILITY=351
-COM_FREQ=352
-COM_TYPE=353
-CLOSE_RUNWAY=354
-RUNWAY_SURFACE=355
-RUNWAY_HEADING=356
-RUNWAY_LENGTH=357
-RUNWAY_WIDTH=358
-RUNWAY_NUMBER=359
-RUNWAY_DESIGNATOR=360
-RUNWAY_PRIMARY_DESIGNATOR=361
-RUNWAY_SECONDARY_DESIGNATOR=362
-RUNWAY_PATTERN_ALT=363
-RUNWAY_PRIMARY_TAKEOFF=364
-RUNWAY_PRIMARY_LANDING=365
-RUNWAY_PRIMARY_PATTERN=366
-RUNWAY_SECONDARY_TAKEOFF=367
-RUNWAY_SECONDARY_LANDING=368
-RUNWAY_SECONDARY_PATTERN=369
-RUNWAY_PRIMARY_MARKING_BIAS=370
-RUNWAY_SECONDARY_MARKING_BIAS=371
-CLOSE_ILS=372
-CLOSE_VISUALMODEL=373
-CLOSE_WAYPOINT=374
-CLOSE_ROUTE=375
 '-'=1
 '.'=2
 'M'=3
@@ -447,86 +419,86 @@ CLOSE_ROUTE=375
 'B'=72
 'TRUE'=73
 'FALSE'=74
-'alternateThreshold='=75
-'alternateTouchdown='=76
-'alternateFixedDistance='=77
-'alternatePrecision='=78
-'leadingZeroIdent='=79
-'noThreshHoldEndArrows='=80
-'edges='=81
-'threshold='=82
-'fixed='=83
-'touchdown='=84
-'dashes='=85
-'ident='=86
-'precision='=87
-'edgePavement='=88
-'singleEnd='=89
-'primaryClosed='=90
-'primaryStol='=91
-'secondaryStol='=92
-'center='=93
-'edge='=94
-'centerRed='=95
-'LOW'=96
-'MEDIUM'=97
-'HIGH'=98
-'end='=99
-'PRIMARY'=100
-'SECONDARY'=101
-'length='=102
-'surface='=103
-'ALSF1'=104
-'ALSF2'=105
-'CALVERT'=106
-'CALVERT2'=107
-'MALS'=108
-'MALSF'=109
-'MALSR'=110
-'ODALS'=111
-'RAIL'=112
-'SALS'=113
-'SALSF'=114
-'SSALF'=115
-'SSALR'=116
-'SSALS'=117
-'PAPI2 (2 light PAPI)'=118
-'PAPI4 (4 light PAPI)'=119
-'PVASI (Pulsating VASI)'=120
-'TRICOLOR Tri Color VASI'=121
-'TVASI colored VASI in a shared-"T" shape'=122
-'VASI21 2 rows, 1 box/row'=123
-'VASI22 2 rows, 2 boxes/row'=124
-'VASI23 2 rows, 3 boxes/row'=125
-'VASI31 3 rows, 1 box/row'=126
-'VASI32 3 rows, 2 boxes/row'=127
-'VASI33 3 rows, 3 boxes/row (far row has only two boxes, 8 light system)'=128
-'BALL (presently remapped to PVASI)'=129
-'APAP (panels)'=130
-'PANELS (presently remapped to PAP2)'=131
-'lat='=132
-'lon='=133
-'alt='=134
-'heading='=135
-'frequency='=136
-'range='=137
-'magvar='=138
-'width='=139
-'name='=140
-'backCourse='=141
-'RunwayStart'=142
-'RUNWAY'=143
-'imageComplexity='=144
-'VERY_SPARSE'=145
-'SPARSE'=146
-'NORMAL'=147
-'DENSE'=148
-'VERY_DENSE'=149
-'instanceId='=150
-'biasX='=151
-'biasY='=152
-'number='=153
-'designator='=154
+'designator='=75
+'alternateThreshold='=76
+'alternateTouchdown='=77
+'alternateFixedDistance='=78
+'alternatePrecision='=79
+'leadingZeroIdent='=80
+'noThreshHoldEndArrows='=81
+'edges='=82
+'threshold='=83
+'fixed='=84
+'touchdown='=85
+'dashes='=86
+'ident='=87
+'precision='=88
+'edgePavement='=89
+'singleEnd='=90
+'primaryClosed='=91
+'primaryStol='=92
+'secondaryStol='=93
+'center='=94
+'edge='=95
+'centerRed='=96
+'LOW'=97
+'MEDIUM'=98
+'HIGH'=99
+'end='=100
+'PRIMARY'=101
+'SECONDARY'=102
+'length='=103
+'surface='=104
+'ALSF1'=105
+'ALSF2'=106
+'CALVERT'=107
+'CALVERT2'=108
+'MALS'=109
+'MALSF'=110
+'MALSR'=111
+'ODALS'=112
+'RAIL'=113
+'SALS'=114
+'SALSF'=115
+'SSALF'=116
+'SSALR'=117
+'SSALS'=118
+'PAPI2 (2 light PAPI)'=119
+'PAPI4 (4 light PAPI)'=120
+'PVASI (Pulsating VASI)'=121
+'TRICOLOR Tri Color VASI'=122
+'TVASI colored VASI in a shared-"T" shape'=123
+'VASI21 2 rows, 1 box/row'=124
+'VASI22 2 rows, 2 boxes/row'=125
+'VASI23 2 rows, 3 boxes/row'=126
+'VASI31 3 rows, 1 box/row'=127
+'VASI32 3 rows, 2 boxes/row'=128
+'VASI33 3 rows, 3 boxes/row (far row has only two boxes, 8 light system)'=129
+'BALL (presently remapped to PVASI)'=130
+'APAP (panels)'=131
+'PANELS (presently remapped to PAP2)'=132
+'lat='=133
+'lon='=134
+'alt='=135
+'heading='=136
+'frequency='=137
+'range='=138
+'magvar='=139
+'width='=140
+'name='=141
+'backCourse='=142
+'RunwayStart'=143
+'RUNWAY'=144
+'imageComplexity='=145
+'VERY_SPARSE'=146
+'SPARSE'=147
+'NORMAL'=148
+'DENSE'=149
+'VERY_DENSE'=150
+'instanceId='=151
+'biasX='=152
+'biasY='=153
+'number='=154
 'waypointType='=155
 'NAMED'=156
 'UNNAMED'=157
