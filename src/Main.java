@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         try{
             Grammar g = Grammar.load("comp.g4");
-            LexerInterpreter lexer = g.createLexerInterpreter(new ANTLRFileStream("teste.bgl.xml"));
+            LexerInterpreter lexer = g.createLexerInterpreter(new ANTLRFileStream("airport_porto.xml"));
             compParser parser = new compParser(new CommonTokenStream(lexer));
             ParseTree tree = parser.start();
             ParseTreeWalker walker = new ParseTreeWalker();

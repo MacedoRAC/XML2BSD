@@ -39,18 +39,14 @@ public class Lights {
     }
 
     public void setCenter(String center) {
-        this.center = center.replaceAll("^\"|\"$", "");
+        this.center = center;
     }
 
     public void setEdge(String edge) {
-        this.edge = edge.replaceAll("^\"|\"$", "");
+        this.edge = edge;
     }
 
-    public void setCenterRed(String centerRed) {
-        centerRed = centerRed.replaceAll("^\"|\"$", "");
-        if(centerRed == "TRUE" || centerRed == "YES")
-            this.centerRed = true;
-        else
-            this.centerRed = false;
+    public void setCenterRed(Boolean centerRed) {
+        this.centerRed = centerRed;
     }
 }

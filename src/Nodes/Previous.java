@@ -44,29 +44,18 @@ public class Previous {
     }
 
     public void setWaypointType(String waypointType) {
-        this.waypointType = waypointType.replaceAll("^\"|\"$", "");
+        this.waypointType = waypointType;
     }
 
     public void setWaypointRegion(String waypointRegion) {
-        this.waypointRegion = waypointRegion.replaceAll("^\"|\"$", "");
-
-        if(this.waypointRegion.length() != 2){
-            this.waypointRegion = null;
-            throw new IllegalArgumentException("WaypointRegion is out of bounds (must insert 2 chars)");
-        }
+        this.waypointRegion = waypointRegion;
     }
 
     public void setWaypointIdent(String waypointIdent) {
-        this.waypointIdent = waypointIdent.replaceAll("^\"|\"$", "");
-
-        if(this.waypointIdent.length() > 5){
-            this.waypointIdent = null;
-            throw new IllegalArgumentException("WaypointIdent is out of bounds (5 chars maximum are allowed)");
-        }
+        this.waypointIdent = waypointIdent;
     }
 
-    public void setAltitudeMinimum(String altitudeMinimum) {
-        altitudeMinimum = altitudeMinimum.replaceAll("^\"|\"$", "");
-        this.altitudeMinimum = Float.parseFloat(altitudeMinimum);
+    public void setAltitudeMinimum(float altitudeMinimum) {
+        this.altitudeMinimum = altitudeMinimum;
     }
 }

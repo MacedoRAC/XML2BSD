@@ -124,9 +124,7 @@ BLUE : 'blue';
 
 WS: [ \t\n\r]+ -> skip ;
 
-start : STARTNODE AIRPORT attributes* CLOSE_TAG airport_nodes* START_END_NODE AIRPORT CLOSE_TAG
-		{System.out.println("WELL DONE !");}
-	;
+start : STARTNODE AIRPORT attributes* CLOSE_TAG airport_nodes* START_END_NODE AIRPORT CLOSE_TAG;
 
 airport_nodes : tower_node | services_node | com_node | runway_node | runwayalias_node | waypoint_node | helipad_node | taxi_nodes;
 

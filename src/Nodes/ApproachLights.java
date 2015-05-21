@@ -56,44 +56,26 @@ public class ApproachLights {
     }
 
     public void setEnd(String end) {
-        this.end = end.replaceAll("^\"|\"$", "");
+        this.end = end;
     }
 
     public void setSystem(String system) {
-        this.system = system.replaceAll("^\"|\"$", "");
+        this.system = system;
     }
 
-    public void setStrobes(String strobes) {
-       strobes = strobes.replaceAll("^\"|\"$", "");
-       this.strobes = Integer.parseInt(strobes);
-
-       if(this.strobes < 0){
-            this.strobes = null;
-            throw new IllegalArgumentException("Strobes is out of bounds (should be a non-negative integer)");
-        }
+    public void setStrobes(Integer strobes) {
+        this.strobes = strobes;
     }
 
-    public void setReil(String reil) {
-        reil = reil.replaceAll("^\"|\"$", "");
-        if(reil == "TRUE" || reil == "YES")
-            this.reil = true;
-        else
-            this.reil = false;
+    public void setReil(Boolean reil) {
+        this.reil = reil;
     }
 
-    public void setTouchdown(String touchdown) {
-        touchdown = touchdown.replaceAll("^\"|\"$", "");
-        if(touchdown == "TRUE" || touchdown == "YES")
-            this.touchdown = true;
-        else
-            this.touchdown = false;
+    public void setTouchdown(Boolean touchdown) {
+        this.touchdown = touchdown;
     }
 
-    public void setEndLights(String endLights) {
-        endLights = endLights.replaceAll("^\"|\"$", "");
-        if(endLights == "TRUE" || endLights == "YES")
-            this.endLights = true;
-        else
-            this.endLights = false;
+    public void setEndLights(Boolean endLights) {
+        this.endLights = endLights;
     }
 }

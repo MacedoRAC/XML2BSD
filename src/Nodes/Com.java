@@ -34,26 +34,15 @@ public class Com {
 
     }
 
-    public void setFreq(String freq) {
-        freq = freq.replaceAll("^\"|\"$", "");
-        this.freq = Float.parseFloat(freq);
-
-        if(this.freq < -180.0 || this.freq > 136.992){
-            this.freq = Float.NaN;
-            throw new IllegalArgumentException("Frequency is out of bounds (values between -180.0 and 136.992 are allowed)");
-        }
+    public void setFreq(float freq) {
+        this.freq = freq;
     }
 
     public void setType(String type) {
-        this.type = type.replaceAll("^\"|\"$", "");
+        this.type = type;
     }
 
     public void setName(String name) {
-        this.name = name.replaceAll("^\"|\"$", "");
-
-        if(this.name.length() > 48){
-            this.name = null;
-            throw new IllegalArgumentException("Name is out of bounds (48 chars at maximum are allowed)");
-        }
+        this.name = name;
     }
 }

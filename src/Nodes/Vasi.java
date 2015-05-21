@@ -62,36 +62,30 @@ public class Vasi {
     }
 
     public void setEnd(String end) {
-        this.end = end.replaceAll("^\"|\"$", "");
+        this.end = end;
     }
 
     public void setType(String type) {
-        this.type = type.replaceAll("^\"|\"$", "");
+        this.type = type;
     }
 
     public void setSide(String side) {
-        this.side = side.replaceAll("^\"|\"$", "");
+        this.side = side;
     }
 
     public void setBiasX(String biasX) {
-        this.biasX = biasX.replaceAll("^\"|\"$", "");
+        this.biasX = biasX;
     }
 
     public void setBiasZ(String biasZ) {
-        this.biasZ = biasZ.replaceAll("^\"|\"$", "");
+        this.biasZ = biasZ;
     }
 
     public void setSpacing(String spacing) {
-        this.spacing = spacing.replaceAll("^\"|\"$", "");
+        this.spacing = spacing;
     }
 
-    public void setPitch(String pitch) {
-        pitch = pitch.replaceAll("^\"|\"$", "");
-        this.pitch = Float.parseFloat(pitch);
-
-        if(this.pitch < 0 || this.pitch > 10){
-            this.pitch = Float.NaN;
-            throw new IllegalArgumentException("Pitch is out of bounds (values between 0.0 and 10.0 are allowed)");
-        }
+    public void setPitch(float pitch) {
+        this.pitch = pitch;
     }
 }

@@ -44,18 +44,18 @@ public class BlastPad {
     }
 
     public void setEnd(String end) {
-        this.end = end.replaceAll("^\"|\"$", "");
+        this.end = end;
     }
 
     public void setLenght(String lenght) {
-        this.lenght = lenght.replaceAll("^\"|\"$", "");
+        this.lenght = lenght;
     }
 
     public void setWidth(String width) {
-        this.width = width.replaceAll("^\"|\"$", "");
+        this.width = width;
     }
 
     public void setSurface(String surface) {
-        this.surface = surface.replaceAll("^\"|\"$", "");
+        this.surface = surface;
     }
 }

@@ -38,18 +38,15 @@ public class BiasXYZ {
         System.lineSeparator();
     }
 
-    public void setBiasX(String biasX) {
-        biasX = biasX.replaceAll("^\"|\"$", "");
-        this.biasX = Float.parseFloat(biasX);
+    public void setBiasX(float biasX) {
+        this.biasX = biasX;
     }
 
-    public void setBiasY(String biasY) {
-        biasY = biasY.replaceAll("^\"|\"$", "");
-        this.biasY = Float.parseFloat(biasY);
+    public void setBiasY(float biasY) {
+        this.biasY = biasY;
     }
 
-    public void setBiasZ(String biasZ) {
-        biasZ = biasZ.replaceAll("^\"|\"$", "");
-        this.biasZ = Float.parseFloat(biasZ);
+    public void setBiasZ(float biasZ) {
+        this.biasZ = biasZ;
     }
 }

@@ -138,113 +138,78 @@ public class Runway {
     }
 
     public void setAlt(String alt) {
-        this.alt = alt.replaceAll("^\"|\"$", "");
+        this.alt = alt;
     }
 
     public void setSurface(String surface) {
-        this.surface = surface.replaceAll("^\"|\"$", "");
+        this.surface = surface;
     }
 
     public void setLength(String length) {
-        this.length = length.replaceAll("^\"|\"$", "");
+        this.length = length;
     }
 
-    public void setWith(String with) {
-        this.width = with.replaceAll("^\"|\"$", "");
+    public void setWidth(String width) {
+        this.width = width;
     }
 
     public void setNumber(String number) {
-        this.number = number.replaceAll("^\"|\"$", "");
+        this.number = number;
     }
 
     public void setDesignator(String designator) {
-        this.designator = designator.replaceAll("^\"|\"$", "");
+        this.designator = designator;
     }
 
     public void setPrimaryDesignator(String primaryDesignator) {
-        this.primaryDesignator = primaryDesignator.replaceAll("^\"|\"$", "");
+        this.primaryDesignator = primaryDesignator;
     }
 
     public void setSecondaryDesignator(String secondaryDesignator) {
-        this.secondaryDesignator = secondaryDesignator.replaceAll("^\"|\"$", "");
+        this.secondaryDesignator = secondaryDesignator;
     }
 
     public void setPatternAltitude(String patternAltitude) {
-        this.patternAltitude = patternAltitude.replaceAll("^\"|\"$", "");
+        this.patternAltitude = patternAltitude;
     }
 
     public void setSecondaryPattern(String secondaryPattern) {
-        this.secondaryPattern = secondaryPattern.replaceAll("^\"|\"$", "");
+        this.secondaryPattern = secondaryPattern;
     }
 
     public void setPrimMarkingBias(String primMarkingBias) {
-        this.primMarkingBias = primMarkingBias.replaceAll("^\"|\"$", "");
+        this.primMarkingBias = primMarkingBias;
     }
 
     public void setSecMarkBias(String secMarkBias) {
-        this.secMarkBias = secMarkBias.replaceAll("^\"|\"$", "");
+        this.secMarkBias = secMarkBias;
     }
 
-    public void setPrimaryTakeoff(String primaryTakeoff) {
-        primaryTakeoff = primaryTakeoff.replaceAll("^\"|\"$", "");
-        if(primaryTakeoff == "TRUE" || primaryTakeoff == "YES")
-            this.primaryTakeoff = true;
-        else
-            this.primaryTakeoff = false;
-
+    public void setPrimaryTakeoff(Boolean primaryTakeoff) {
+        this.primaryTakeoff = primaryTakeoff;
     }
 
-    public void setPrimarylanding(String primarylanding) {
-        primarylanding = primarylanding.replaceAll("^\"|\"$", "");
-        if(primarylanding == "TRUE" || primarylanding == "YES")
-            this.primarylanding = true;
-        else
-            this.primarylanding = false;
+    public void setPrimarylanding(Boolean primarylanding) {
+        this.primarylanding = primarylanding;
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setSecondaryTakeoff(Boolean secondaryTakeoff) {
+        this.secondaryTakeoff = secondaryTakeoff;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setSecondarylanding(Boolean secondarylanding) {
+        this.secondarylanding = secondarylanding;
     }
 
-    public void setHeading(String heading) {
-        heading = heading.replaceAll("^\"|\"$", "");
-        this.heading = Float.parseFloat(heading);
-
-        if(this.heading < 0 || this.heading > 360){
-            this.heading = Float.NaN;
-            throw new IllegalArgumentException("Heading is out of bounds (values between 0.0 and 360.0 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setSecondaryTakeoff(String secondaryTakeoff) {
-        secondaryTakeoff = secondaryTakeoff.replaceAll("^\"|\"$", "");
-        if(secondaryTakeoff == "TRUE" || secondaryTakeoff == "YES")
-            this.secondaryTakeoff = true;
-        else
-            this.secondaryTakeoff = false;
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
-    public void setSecondarylanding(String secondarylanding) {
-        secondarylanding = secondarylanding.replaceAll("^\"|\"$", "");
-        if(secondarylanding == "TRUE" || secondarylanding == "YES")
-            this.secondarylanding = true;
-        else
-            this.secondarylanding = false;
+    public void setHeading(float heading) {
+        this.heading = heading;
     }
 }
