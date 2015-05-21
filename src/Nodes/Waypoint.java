@@ -56,55 +56,27 @@ public class Waypoint {
         System.lineSeparator();
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
     public void setWaypointType(String waypointType) {
-        this.waypointType = waypointType.replaceAll("^\"|\"$", "");
+        this.waypointType = waypointType;
     }
 
-    public void setMagvar(String magvar) {
-        magvar = magvar.replaceAll("^\"|\"$", "");
-        this.magvar = Float.parseFloat(magvar);
-
-        if(this.magvar < -360 || this.magvar > 360){
-            this.magvar = Float.NaN;
-            throw new IllegalArgumentException("Magvar is out of bounds (values between -360 and 360 are allowed)");
-        }
+    public void setMagvar(float magvar) {
+        this.magvar = magvar;
     }
 
     public void setWaypointRegion(String waypointRegion) {
-        this.waypointRegion = waypointRegion.replaceAll("^\"|\"$", "");
-
-        if(this.waypointRegion.length() != 2){
-            this.waypointRegion = null;
-            throw new IllegalArgumentException("WaypointRegion is out of bounds (must insert 2 chars)");
-        }
+        this.waypointRegion = waypointRegion;
     }
 
     public void setWaypointIdent(String waypointIdent) {
-        this.waypointIdent = waypointIdent.replaceAll("^\"|\"$", "");
-
-        if(this.waypointIdent.length() > 5){
-            this.waypointIdent = null;
-            throw new IllegalArgumentException("WaypointIdent is out of bounds (5 chars maximum are allowed)");
-        }
+        this.waypointIdent = waypointIdent;
     }
 }

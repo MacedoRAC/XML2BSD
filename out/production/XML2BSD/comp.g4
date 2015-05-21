@@ -3,7 +3,7 @@ grammar comp;
 /* GENERAL TOKENS */
 NUM : [0-9]+ ;
 INTLAT : [0-90] ;
-STRING : ([a-z] | [A-Z])*;
+STRING : ([a-z] | [A-Z])+;
 UPPER : [A-Z];
 CHAR : [A-Z] | [a-z];
 ASPAS : '"' ;
@@ -124,27 +124,24 @@ BLUE : 'blue';
 
 WS: [ \t\n\r]+ -> skip ;
 
-start : STARTNODE AIRPORT attributes CLOSE_TAG airport_nodes? START_END_NODE AIRPORT CLOSE_TAG
-		{System.out.println("WELL DONE !");}
-	;
+start : STARTNODE AIRPORT attributes* CLOSE_TAG airport_nodes* START_END_NODE AIRPORT CLOSE_TAG;
 
-airport_nodes : tower_node? services_node? com_node? runway_node? runwayalias_node? waypoint_node? helipad_node? taxi_nodes?;
+airport_nodes : tower_node | services_node | com_node | runway_node | runwayalias_node | waypoint_node | helipad_node | taxi_nodes;
 
 taxi_nodes : taxiwaypoint_node taxiwayparking_node taxiname_node taxiwaypath_node;
 
-attributes : (REGION value_string)?
-			 (COUNTRY value_string)?
-			 (STATE value_string)?
-			 (CITY value_string)?
-			 (NAME value_string)?
-			 LAT value_lat
-			 LON value_lon
-			 ALT value_alt
-			 (MAGVAR value_magvar)?
-			 IDENT value_string
-			 (TEST_RADIUS value_radius)?
-			 (TRAFFIC_SCALAR value_tscalar)?
-			 CLOSE_TAG;
+attributes : (REGION value_string) |
+			 (COUNTRY value_string) |
+			 (STATE value_string) |
+			 (CITY value_string) |
+			 (NAME value_string) |
+			 (LAT value_lat) |
+			 (LON value_lon) |
+			 (ALT value_alt) |
+			 (MAGVAR value_magvar) |
+			 (IDENT value_string) |
+			 (AIRPORT_TEST_RADIUS value_radius) |
+			 (TRAFFIC_SCALAR value_tscalar);
 
 value_string : ASPAS STRING ASPAS; /* Falta semantica - max 48chars */
 
@@ -163,19 +160,16 @@ value_magvar : '-'? NUM* ('.' NUM+)?; /* FALTA SEMANTICA */
 value_tscalar : NUM '.' NUM ; /* FALTA SEMANTICA */
 
 /* TOWER NODE */
-tower_node : STARTNODE TOWER tower_attributes ENDNODE;
+tower_node : STARTNODE TOWER tower_attributes* ENDNODE;
 
-tower_attributes : 	LAT value_lat
-					LON value_lon
-					ALT value_alt
-					;
+tower_attributes : 	(LAT value_lat)
+					(LON value_lon)
+					(ALT value_alt);
 
 /* SERVICES NODE */
-services_node : SERVICES fuel* CLOSE_SERVICES;
+services_node : SERVICES fuel* START_END_NODE SERVICES CLOSE_TAG;
 
-fuel : FUEL_TYPE typeOfFuel
-	   FUEL_AVAILABILITY fuelAvail
-	  ;
+fuel : (TYPE typeOfFuel) | (AVAILABILITY fuelAvail);
 
 typeOfFuel : ASPAS ('73' | '87' | '100' | '130' | '145' | 'MOGAS' | 'JET' | 'JETA' | 'JETA1' | 'JETAP' | 'JETB' | 'JET4' | 'JET5' | 'UNKNOWN') ASPAS;
 
@@ -183,44 +177,42 @@ fuelAvail : ASPAS ('YES' | 'NO' | 'UNKNOWN' | 'PRIOR_REQUEST') ASPAS;
 
 
 /* COM NODE */
-com_node : STARTNODE COM com_attributes ENDNODE;
+com_node : STARTNODE COM com_attributes* ENDNODE;
 
-com_attributes : COM_FREQ freq_value
-				 COM_TYPE com_types
-				 NAME value_string
-				 ;
+com_attributes : (FREQUENCY freq_value) |
+				 (TYPE com_types) |
+				 (NAME value_string);
 
-freq_value : ASPAS  ASPAS; /* falta semantica */
+freq_value : ASPAS NUM+ ('.' NUM+)? ASPAS; /* falta semantica */
 
 com_types : ASPAS ('APPROACH' | 'ASOS' | 'AWOS' | 'CENTER' | 'CLEARANCE' | 'CLEARANCE_PRE_TAXI' | 'CTAF' | 'DEPARTURE' | 'FSS' | 'GROUND' | 'MULTICOM' | 'REMOTE_CLEARANCE_DELIVERY' | 'TOWER' | 'UNICOM') ASPAS;
 
 
 /* RUNWAY NODE */
-runway_node : RUNWAY runway_attributes runway_nodes* CLOSE_RUNWAY;
+runway_node : RUNWAY runway_attributes* CLOSE_TAG runway_nodes* START_END_NODE RUNWAY CLOSE_TAG;
 
 runway_nodes : markings_node | lights_node | offsetthreshold_node | blastpad_node | overrun_node | approachlights_node | vasi_node | ils_node | runwaystart_node;
 
-runway_attributes: LAT value_lat
-				   LON value_lon
-				   ALT value_alt
-				   RUNWAY_SURFACE surface_types
-				   RUNWAY_HEADING heading_values
-				   RUNWAY_LENGTH  value_alt
-				   RUNWAY_WIDTH value_alt
-				   RUNWAY_NUMBER runway_number
-				   (RUNWAY_DESIGNATOR designator_values)?
-				   (RUNWAY_PRIMARY_DESIGNATOR primary_designator)?
-				   (RUNWAY_SECONDARY_DESIGNATOR secondary_values)?
-				   (RUNWAY_PATTERN_ALT value_alt)?
-				   (RUNWAY_PRIMARY_TAKEOFF boolean_value)?
-				   (RUNWAY_PRIMARY_LANDING boolean_value)?
-				   (RUNWAY_PRIMARY_PATTERN pattern_value)?
-				   (RUNWAY_SECONDARY_TAKEOFF boolean_value)?
-				   (RUNWAY_SECONDARY_LANDING boolean_value)?
-				   (RUNWAY_SECONDARY_PATTERN pattern_value)?
-				   RUNWAY_PRIMARY_MARKING_BIAS runway_markings
-				   RUNWAY_SECONDARY_MARKING_BIAS runway_markings
-				   CLOSE_TAG;
+runway_attributes: (LAT value_lat) |
+				   (LON value_lon) |
+				   (ALT value_alt) |
+				   (SURFACE surface_types) |
+				   (HEADING heading_values) |
+				   (LENGTH  value_alt) |
+				   (WIDTH value_alt) |
+				   (NUMBER runway_number) |
+				   (designator_attr) |
+				   (PRIMARY_DESIGNATOR primary_designator) |
+				   (SECONDARY_DESIGNATOR secondary_designator) |
+				   (PATTERN_ALT value_alt) |
+				   (PRIMARY_TAKEOFF boolean_value) |
+				   (PRIMARY_LANDING boolean_value) |
+				   (PRIMARY_PATTERN pattern_value) |
+				   (SECONDARY_TAKEOFF boolean_value) |
+				   (SECONDARY_LANDING boolean_value) |
+				   (SECONDARY_PATTERN pattern_value) |
+				   (PRIMARY_MARKING_BIAS runway_markings) |
+				   (SECONDARY_MARKING_BIAS runway_markings);
 
 surface_types : ASPAS ('ASPHALT' | 'BITUMINOUS' | 'BRICK' | 'CLAY' | 'CLEMENT' | 'CONCRETE' | 'CORAL' | 'DIRT' | 'GRASS' | 'GRAVEL' | 'ICE' | 'MACADAM' | 'OIL_TREATED, PLANKS' | 'SAND' | 'SHALE' | 'SNOW' | 'STEEL_MATS' | 'TARMAC' | 'UNKNOWN' | 'WATER') ASPAS;
 
@@ -232,7 +224,7 @@ designator_values : ASPAS ('NONE' | 'C' | 'CENTER' | 'L' | 'LEFT' | 'R' | 'RIGHT
 
 primary_designator : designator_values; /* falta semantica */
 
-secondary_values : designator_values; /* falta semantica */
+secondary_designator : designator_values; /* falta semantica */
 
 boolean_value : ASPAS (('TRUE' | 'YES') | ('FALSE' | 'NO')) ASPAS; /* falta semantica */
 
@@ -240,10 +232,12 @@ pattern_value : ASPAS ('LEFT' | 'RIGHT') ASPAS; /* falta semantica */
 
 runway_markings : ASPAS (NUM ('F' | 'N' | 'M')) ASPAS;
 
+designator_attr : 'designator=' ASPAS designator_values ASPAS;
+
 /* MARKINGS NODE */
 markings_node : STARTNODE MARKINGS markings_attributes* ENDNODE;
 
-markings_attributes : markings_attr ASPAS boolean_value ASPAS;
+markings_attributes : markings_attr* ASPAS boolean_value ASPAS;
 
 markings_attr : 'alternateThreshold=' | 'alternateTouchdown=' | 'alternateFixedDistance=' | 'alternatePrecision=' | 'leadingZeroIdent=' | 'noThreshHoldEndArrows=' | 'edges=' | 'threshold=' | 'fixed=' | 'touchdown=' | 'dashes=' | 'ident=' | 'precision=' | 'edgePavement=' | 'singleEnd=' | 'primaryClosed=' | 'secondaryClosed' | 'primaryStol=' | 'secondaryStol=';
 
@@ -285,11 +279,11 @@ overrun_attr : end_attr | length_attr | width_attr | surface_attr;
 /* APPROACH LIGHTS NODE */
 approachlights_node : STARTNODE APPROACHLIGHTS approachlights_attr* ENDNODE;
 
-approachlights_attr : end_attr | system_approachlights | scrobes_approachlights | reil_approachlights | touchdown_approachlights | endlights_approachlights;
+approachlights_attr : end_attr | system_approachlights | strobes_approachlights | reil_approachlights | touchdown_approachlights | endlights_approachlights;
 
 system_approachlights : ASPAS ('NONE' | 'ALSF1' | 'ALSF2' | 'CALVERT' | 'CALVERT2' | 'MALS' | 'MALSF' | 'MALSR' | 'ODALS' | 'RAIL' | 'SALS' | 'SALSF' | 'SSALF' | 'SSALR' | 'SSALS') ASPAS;
 
-scrobes_approachlights : ASPAS NUM ASPAS;
+strobes_approachlights : ASPAS NUM ASPAS; /* falta semantica */
 
 reil_approachlights : ASPAS boolean_value ASPAS;
 
@@ -311,10 +305,10 @@ side_vasi : ASPAS ('LEFT' | 'RIGHT') ASPAS;
 
 spacing_vasi : ASPAS NUM ASPAS;
 
-pitch_vasi : ASPAS NUM ASPAS;
+pitch_vasi : ASPAS NUM ASPAS; /* falta semantica */
 
 /* ILS NODE */
-ils_node : ILS ils_attr CLOSE_TAG ils_nodes* CLOSE_ILS;
+ils_node : ILS ils_attr* CLOSE_TAG ils_nodes* START_END_NODE ILS CLOSE_TAG;
 
 ils_nodes : glideslope_node | dme_node | visualmodel_node;
 
@@ -326,41 +320,43 @@ lon_attr : 'lon=' value_lon;
 
 alt_attr : 'alt=' value_alt;
 
-heading_attr : 'heading=' ASPAS NUM '.' NUM ASPAS;
+heading_attr : 'heading=' ASPAS NUM '.' NUM ASPAS; /* falta semantica */
 
-freq_attr : 'frequency=' ASPAS NUM '.' NUM ASPAS;
+freq_attr : 'frequency=' ASPAS NUM '.' NUM ASPAS; /* falta semantica */
 
-range_ils : 'range=' ASPAS NUM 'N'? ASPAS;
+range_ils : 'range=' ASPAS NUM 'N'? ASPAS; /* falta semantica */
 
-magvar_attr : 'magvar=' ASPAS NUM '.' NUM ASPAS;
+magvar_attr : 'magvar=' ASPAS NUM '.' NUM ASPAS; /* falta semantica*/
 
-ident_ils : 'ident=' ASPAS STRING ASPAS;
+ident_ils : 'ident=' ASPAS STRING ASPAS; /*falta semantica */
 
-width_attr : 'width=' ASPAS NUM '.' NUM ASPAS;
+width_attr : 'width=' ASPAS NUM '.' NUM ASPAS; /*falta semantica */
 
-name_ils : 'name=' ASPAS STRING ASPAS;
+name_ils : 'name=' ASPAS STRING ASPAS; /*falta semantica */
 
 backcourse_ils : 'backCourse=' ASPAS boolean_value ASPAS;
 
 /* RUNWAYSTART_NODE */
-runwaystart_node : STARTNODE 'RunwayStart' type_runwaystart? lat_attr lon_attr alt_attr heading_attr end_runwaynode? ENDNODE;
+runwaystart_node : STARTNODE 'RunwayStart' runwaystart_attr* end_runwaynode? ENDNODE;
+
+runwaystart_attr : type_runwaystart | lat_attr | lon_attr | alt_attr | heading_attr ;
 
 type_runwaystart : TYPE ASPAS 'RUNWAY' ASPAS;
 
 end_runwaynode : 'end=' ASPAS end_attr_values ASPAS ; 
 
 /* GLIDESLOPE NODE */
-glideslope_node : STARTNODE GLIDESLOPE glideslope_attr ENDNODE;
+glideslope_node : STARTNODE GLIDESLOPE glideslope_attr* ENDNODE;
 
 glideslope_attr : lat_attr | lon_attr | alt_attr | pitch_vasi | range_ils;
 
 /* DME NODE */
-dme_node : STARTNODE DME dme_attr ENDNODE;
+dme_node : STARTNODE DME dme_attr* ENDNODE;
 
 dme_attr : lat_attr | lon_attr | alt_attr | range_ils;
 
 /* VISUAL_MODEL NODE */
-visualmodel_node : VISUALMODEL visualmodel_attr CLOSE_TAG biasxyz_node CLOSE_VISUALMODEL;
+visualmodel_node : VISUALMODEL visualmodel_attr* CLOSE_TAG biasxyz_node START_END_NODE VISUALMODEL CLOSE_TAG;
 
 visualmodel_attr : heading_attr | imagecomplexity_visualmodel | name_visualmodel | instanceid_visualmodel;
 
@@ -374,23 +370,23 @@ instanceid_visualmodel : 'instanceId=' ASPAS instanceid_visualmodel_values ASPAS
 instanceid_visualmodel_values : STRING '-' STRING '-' STRING '-' STRING '-' STRING;
 
 /* BIAS_XYZ NODE */
-biasxyz_node : STARTNODE BIASXYZ bias_attr ENDNODE;
+biasxyz_node : STARTNODE BIASXYZ bias_attr* ENDNODE;
 
 bias_attr : biasX | biasY | biasZ;
 
-biasX : 'biasX=' ASPAS NUM ASPAS;
+biasX : 'biasX=' ASPAS NUM+ ('.' NUM+)? ASPAS;
 
-biasY : 'biasY=' ASPAS NUM ASPAS;
+biasY : 'biasY=' ASPAS NUM+ ('.' NUM+)? ASPAS;
 
-biasZ : 'biasY=' ASPAS NUM ASPAS;
+biasZ : 'biasY=' ASPAS NUM+ ('.' NUM+)? ASPAS;
 
 
 /* RUNWAYALIAS NODE */
-runwayalias_node : STARTNODE RUNWAYALIAS runwayalias_attr{2} ENDNODE;
+runwayalias_node : STARTNODE RUNWAYALIAS runwayalias_attr* ENDNODE;
 
-runwayalias_attr : 'number=' ASPAS runway_number ASPAS 
-                   'designator=' ASPAS designator_values ASPAS
-                   ;
+runwayalias_attr : number_attr | designator_attr;
+
+number_attr : 'number=' ASPAS runway_number ASPAS;
 
 /* VERTEX NODE */
 vertex_node : STARTNODE VERTEX vertex_attr* ENDNODE;
@@ -399,7 +395,7 @@ vertex_attr : biasX | biasZ | lon_attr | lat_attr;
 
 
 /* WAYPOINT NODE */
-waypoint_node : WAYPOINT waypoint_attr CLOSE_TAG route_node* CLOSE_WAYPOINT;
+waypoint_node : WAYPOINT waypoint_attr CLOSE_TAG route_node* START_END_NODE WAYPOINT CLOSE_TAG;
 
 waypoint_attr : lat_attr | lon_attr | waypointtype_waypoint | magvar_attr | waypointregion_waypoint | waypointident_waypoint;
 
@@ -411,7 +407,7 @@ waypointregion_waypoint : 'waypointRegion=' ASPAS STRING ASPAS; /* falta semanti
 waypointident_waypoint : 'waypointIdent=' ASPAS STRING ASPAS; /* faltas semantica */
 
 /* ROUTE NODE */
-route_node : ROUTE route_attr* CLOSE_TAG route_nodes* CLOSE_ROUTE;
+route_node : ROUTE route_attr* CLOSE_TAG route_nodes* START_END_NODE ROUTE CLOSE_TAG;
 
 route_nodes : previous_node | next_node;
 
@@ -427,7 +423,7 @@ previous_node : STARTNODE PREVIOUS previous_attr* ENDNODE;
 
 previous_attr : waypointtype_waypoint | waypointregion_waypoint | waypointident_waypoint | altitudeMinimum_attr;
 
-altitudeMinimum_attr : 'altitudeMinimum=' ASPAS NUM '.' NUM ASPAS; /* falta semantica */
+altitudeMinimum_attr : 'altitudeMinimum=' ASPAS NUM+ ('.' NUM+)? ASPAS; /* falta semantica */
 
 /* NEXT NODE */
 next_node : STARTNODE NEXT next_attr* ENDNODE;
@@ -436,11 +432,13 @@ next_attr : waypointtype_waypoint | waypointregion_waypoint | waypointident_wayp
 
 
 /* HELIPAD NODE*/
-helipad_node : STARTNODE 'Helipad ' lat_attr lon_attr alt_attr surface_attr heading_attr length_helipad width_helipad type_helipad closed_helipad? transparent_helipad? red_helipad? green_helipad? blue_helipad? ENDNODE;
+helipad_node : STARTNODE 'Helipad ' helipad_attr* ENDNODE;
 
-length_helipad : 'length=' NUM '.' NUM ('M'|'F')? ;
+helipad_attr : lat_attr | lon_attr | alt_attr | surface_attr | heading_attr | length_helipad | width_helipad | type_helipad | closed_helipad | transparent_helipad | red_helipad | green_helipad | blue_helipad ;
 
-width_helipad : 'width=' NUM '.' NUM ('M'|'F')? ;
+length_helipad : 'length=' NUM+ ('.' NUM+)? ('M'|'F')? ;
+
+width_helipad : 'width=' NUM+ ('.' NUM+)? ('M'|'F')? ;
 
 type_helipad : 'type=' type_helipad_values ;
 type_helipad_values : 'NONE'|'CIRCLE'|'H'|'MEDICAL'|'SQUARE';
@@ -449,11 +447,11 @@ closed_helipad : 'closed=' boolean_value;
 
 transparent_helipad : 'transparent= ' boolean_value;
 
-red_helipad : 'red=' NUM; /*FALTA SEMANTICA*/
+red_helipad : 'red=' NUM+; /*FALTA SEMANTICA*/
 
-green_helipad : 'green=' NUM; /*FALTA SEMANTICA*/
+green_helipad : 'green=' NUM+; /*FALTA SEMANTICA*/
 
-blue_helipad : 'blue=' NUM; /*FALTA SEMANTICA*/
+blue_helipad : 'blue=' NUM+; /*FALTA SEMANTICA*/
 
 
 /* TAXiWAY_POINT NODE */
@@ -474,7 +472,7 @@ taxiwayparking_node : STARTNODE TAXIWAYPARKING taxiwayparking_attr* ENDNODE;
 
 taxiwayparking_attr : index_taxiway | lat_attr | lon_attr | biasX | biasZ | heading_attr | radius_taxiway | type_parking | name_parking | number_parking | airlinecodes_parking | pushback_parking | teeoffset1_parking | teeoffset2_parking | teeoffset3_parking  | teeoffset4_parking;
 
-radius_taxiway : 'radius=' ASPAS NUM '.' NUM ASPAS; /* semantica */
+radius_taxiway : 'radius=' ASPAS NUM+ ('.' NUM+)? ASPAS; /* semantica */
 
 type_parking : TYPE ASPAS type_parking_values ASPAS;
 type_parking_values : 'NONE' | 'DOCK_GA' | 'FUEL' | 'GATE_HEAVY' | 'GATE_MEDIUM' | 'GATE_SMALL' | 'RAMP_CARGO' | 'RAMP_GA' | 'RAMP_GA_LARGE' | 'RAMP_GA_MEDIUM' | 'RAMP_GA_SMALL' | 'RAMP_MIL_CARGO' | 'RAMP_MIL_COMBAT' | 'VEHICLE' ;
@@ -482,46 +480,46 @@ type_parking_values : 'NONE' | 'DOCK_GA' | 'FUEL' | 'GATE_HEAVY' | 'GATE_MEDIUM'
 name_parking : 'name=' ASPAS name_parking_values ASPAS;
 name_parking_values : 'PARKING' | 'DOCK' | 'GATE' | 'GATE_UPPER' | 'NONE' | 'N_PARKING' | 'NE_PARKING' | 'NW_PARKING' | 'SE_PARKING' | 'SW_PARKING' | 'W_PARKING' | 'E_PARKING';
 
-number_parking : 'number=' ASPAS NUM ASPAS; /* semantica */
+number_parking : 'number=' ASPAS NUM+ ASPAS; /* semantica */
 
 airlinecodes_parking : 'airlineCodes=' ASPAS STRING ASPAS; /* semantica */
 
 pushback_parking : 'pushBack=' ASPAS NUM ASPAS; /* ver documentação */
 
-teeoffset1_parking : 'teeOffset1=' ASPAS NUM '.' NUM; /* semantica */
+teeoffset1_parking : 'teeOffset1=' ASPAS NUM+ ('.' NUM+)? ; /* semantica */
 
-teeoffset2_parking : 'teeOffset2=' ASPAS NUM '.' NUM; /* semantica */
+teeoffset2_parking : 'teeOffset2=' ASPAS NUM+ ('.' NUM+)? ; /* semantica */
 
-teeoffset3_parking : 'teeOffset3=' ASPAS NUM '.' NUM; /* semantica */
+teeoffset3_parking : 'teeOffset3=' ASPAS NUM+ ('.' NUM+)? ; /* semantica */
 
-teeoffset4_parking : 'teeOffset4=' ASPAS NUM '.' NUM; /* semantica */
+teeoffset4_parking : 'teeOffset4=' ASPAS NUM+ ('.' NUM+)? ; /* semantica */
 
 /* TAXINAME NODE */
 taxiname_node : STARTNODE TAXINAME taxiname_attr* ENDNODE;
 
 taxiname_attr : index_taxiname | name_taxiname;
 
-index_taxiname : 'index=' ASPAS NUM ASPAS; /* semantica */
+index_taxiname : 'index=' ASPAS NUM+ ASPAS; /* semantica */
 
 name_taxiname : 'name=' ASPAS STRING ASPAS; /* semantica */
 
 /* TAXIWAY PATH NODE */
 taxiwaypath_node : STARTNODE TAXIWAYPATH taxiwaypath_attr* ENDNODE;
 
-taxiwaypath_attr : type_taxiwaypath | start_taxiwaypath | end_taxiwaypath | width_attr | weightlimit_taxiwaypath | surface_attr | drawsurface | drawdetail | centerline_taxiwaypath | centerlinelighted_taxiwaypath | leftedge_taxiwaypath | leftedgelighted_taxiwaypath | rightedge_taxiwaypath | rightedgelighted_taxiwaypath | runway_number | designator | name_taxiwaypath;
+taxiwaypath_attr : type_taxiwaypath | start_taxiwaypath | end_taxiwaypath | width_attr | weightlimit_taxiwaypath | surface_attr | drawsurface | drawdetail | centerline_taxiwaypath | centerlinelighted_taxiwaypath | leftedge_taxiwaypath | leftedgelighted_taxiwaypath | rightedge_taxiwaypath | rightedgelighted_taxiwaypath | runway_number | designator_attr | name_taxiwaypath;
 
 type_taxiwaypath : TYPE ASPAS type_taxiwaypath_values ASPAS;
 type_taxiwaypath_values : 'RUNWAY' | 'PARKING' | 'TAXI' | 'PATH' | 'CLOSED' | 'VEHICLE';
 
-start_taxiwaypath : 'start=' ASPAS NUM ASPAS; /* semantica */
+start_taxiwaypath : 'start=' ASPAS NUM+ ASPAS; /* semantica */
 
-end_taxiwaypath : 'end=' ASPAS NUM ASPAS; /* semantica */
+end_taxiwaypath : 'end=' ASPAS NUM+ ASPAS; /* semantica */
 
-weightlimit_taxiwaypath : 'weightLimit=' ASPAS NUM '.' NUM ASPAS;
+weightlimit_taxiwaypath : 'weightLimit=' ASPAS NUM+ ('.' NUM+)? ASPAS;
 
 centerline_taxiwaypath : 'centerLine=' ASPAS boolean_value ASPAS; /* semantica */
 
-centerlinelighted_taxiwaypath : 'centerLineLighted' ASPAS boolean_value ASPAS; /* semantica */
+centerlinelighted_taxiwaypath : 'centerLineLighted=' ASPAS boolean_value ASPAS; /* semantica */
 
 leftedge_taxiwaypath : 'leftEdge=' ASPAS boolean_value ASPAS; /* semantica */
 
@@ -531,10 +529,8 @@ rightedge_taxiwaypath : 'rightEdge=' ASPAS boolean_value ASPAS; /* semantica */
 
 rightedgelighted_taxiwaypath : 'rightEdgeLighted=' ASPAS boolean_value ASPAS; /* semantica */
 
-name_taxiwaypath : 'name=' ASPAS STRING ASPAS; /* semantica */
+name_taxiwaypath : 'name=' ASPAS NUM+ ASPAS; /* semantica */
 
 drawsurface : 'drawSurface=' ASPAS boolean_value ASPAS;
 
 drawdetail : 'drawDetail=' ASPAS boolean_value ASPAS;
-
-designator : 'designator=' ASPAS designator_values ASPAS;

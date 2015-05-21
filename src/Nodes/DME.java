@@ -40,31 +40,19 @@ public class DME {
         }
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
     public void setAlt(String alt) {
-        this.alt = alt.replaceAll("^\"|\"$", "");
+        this.alt = alt;
     }
 
     public void setRange(String range) {
-        this.range = range.replaceAll("^\"|\"$", "");
+        this.range = range;
     }
 }

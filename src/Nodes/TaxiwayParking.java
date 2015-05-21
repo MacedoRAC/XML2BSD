@@ -101,120 +101,63 @@ public class TaxiwayParking {
         System.lineSeparator();
     }
 
-    public void setIndex(String index) {
-        index = index.replaceAll("^\"|\"$", "");
-        this.index = Integer.parseInt(index);
-
-        if(this.index < 0 || this.index > 3999){
-            this.index = null;
-            throw new IllegalArgumentException("Index is out of bounds (values between 0 and 3999 are allowed)");
-        }
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public void setType(String type) {
-        this.type = type.replaceAll("^\"|\"$", "");
+        this.type = type;
     }
 
     public void setOrientation(String orientation) {
-        this.orientation = orientation.replaceAll("^\"|\"$", "");
+        this.orientation = orientation;
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
-    public void setBiasX(String biasX) {
-        biasX = biasX.replaceAll("^\"|\"$", "");
-        this.biasX = Float.parseFloat(biasX);
+    public void setBiasX(float biasX) {
+        this.biasX = biasX;
     }
 
-    public void setBiasZ(String biasZ) {
-        biasZ = biasZ.replaceAll("^\"|\"$", "");
-        this.biasZ = Float.parseFloat(biasZ);
+    public void setBiasZ(float biasZ) {
+        this.biasZ = biasZ;
     }
 
-    public void setHeading(String heading) {
-        heading = heading.replaceAll("^\"|\"$", "");
-        this.heading = Float.parseFloat(heading);
-
-        if(this.heading < 0 || this.heading > 360){
-            this.heading = Float.NaN;
-            throw new IllegalArgumentException("Heading is out of bounds (values between 0 and 360 are allowed)");
-        }
+    public void setHeading(float heading) {
+        this.heading = heading;
     }
 
-    public void setNumber(String number) {
-        number = number.replaceAll("^\"|\"$", "");
-        this.number = Integer.parseInt(number);
-
-        if(this.number < 0 || this.number > 3999){
-            this.number = null;
-            throw new IllegalArgumentException("Number is out of bounds (values between 0 and 3999 are allowed)");
-        }
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public void setAirlineCodes(String airlineCodes) {
-        this.airlineCodes = airlineCodes.replaceAll("^\"|\"$", "");
+        this.airlineCodes = airlineCodes;
     }
 
-    public void setPushBack(String pushBack) {
-        pushBack = pushBack.replaceAll("^\"|\"$", "");
-        this.pushBack = Integer.parseInt(pushBack);
+    public void setPushBack(Integer pushBack) {
+        this.pushBack = pushBack;
     }
 
-    public void setTeeOffset1(String teeOffset1) {
-        teeOffset1 = teeOffset1.replaceAll("^\"|\"$", "");
-        this.teeOffset1 = Float.parseFloat(teeOffset1);
-
-        if(this.teeOffset1 < 0.1 || this.teeOffset1 > 50){
-            this.teeOffset1 = Float.NaN;
-            throw new IllegalArgumentException("TeeOffset1 is out of bounds (values between 0.1 and 50 are allowed)");
-        }
+    public void setTeeOffset1(float teeOffset1) {
+        this.teeOffset1 = teeOffset1;
     }
 
-    public void setTeeOffset2(String teeOffset2) {
-        teeOffset2 = teeOffset2.replaceAll("^\"|\"$", "");
-        this.teeOffset2 = Float.parseFloat(teeOffset2);
-
-        if(this.teeOffset2 < 0.1 || this.teeOffset2 > 50){
-            this.teeOffset2 = Float.NaN;
-            throw new IllegalArgumentException("TeeOffset2 is out of bounds (values between 0.1 and 50 are allowed)");
-        }
+    public void setTeeOffset2(float teeOffset2) {
+        this.teeOffset2 = teeOffset2;
     }
 
-    public void setTeeOffset3(String teeOffset3) {
-        teeOffset3 = teeOffset3.replaceAll("^\"|\"$", "");
-        this.teeOffset3 = Float.parseFloat(teeOffset3);
-
-        if(this.teeOffset3 < 0.1 || this.teeOffset3 > 50){
-            this.teeOffset3 = Float.NaN;
-            throw new IllegalArgumentException("TeeOffset3 is out of bounds (values between 0.1 and 50 are allowed)");
-        }
+    public void setTeeOffset3(float teeOffset3) {
+        this.teeOffset3 = teeOffset3;
     }
 
-    public void setTeeOffset4(String teeOffset4) {
-        teeOffset4 = teeOffset4.replaceAll("^\"|\"$", "");
-        this.teeOffset4 = Float.parseFloat(teeOffset4);
-
-        if(this.teeOffset4 < 0.1 || this.teeOffset4 > 50){
-            this.teeOffset4 = Float.NaN;
-            throw new IllegalArgumentException("TeeOffset4 is out of bounds (values between 0.1 and 50 are allowed)");
-        }
+    public void setTeeOffset4(float teeOffset4) {
+        this.teeOffset4 = teeOffset4;
     }
 }

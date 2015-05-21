@@ -34,10 +34,10 @@ public class RunwayAlias {
     }
 
     public void setNumber(String number) {
-        this.number = number.replaceAll("^\"|\"$", "");
+        this.number = number;
     }
 
     public void setDesignator(String designator) {
-        this.designator = designator.replaceAll("^\"|\"$", "");
+        this.designator = designator;
     }
 }

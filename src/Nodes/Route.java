@@ -33,15 +33,10 @@ public class Route {
     }
 
     public void setRouteType(String routeType) {
-        routeType = routeType.replaceAll("^\"|\"$", "");
+        this.routeType = routeType;
     }
 
     public void setName(String name) {
-        this.name = name.replaceAll("^\"|\"$", "");
-
-        if(this.name.length() > 8){
-            this.name = null;
-            throw new IllegalArgumentException("Name is out of bounds (8 char at maximum)");
-        }
+        this.name = name;
     }
 }

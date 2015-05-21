@@ -29,10 +29,10 @@ public class Fuel {
     }
 
     public void setFuelType(String fuelType) {
-        this.fuelType = fuelType.replaceAll("^\"|\"$", "");
+        this.fuelType = fuelType;
     }
 
     public void setFuelAvail(String fuelAvail) {
-        this.fuelAvail = fuelAvail.replaceAll("^\"|\"$", "");
+        this.fuelAvail = fuelAvail;
     }
 }

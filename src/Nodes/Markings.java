@@ -133,159 +133,79 @@ public class Markings {
         System.lineSeparator();
     }
 
-    public void setAlternateThreshold(String alternateThreshold) {
-        alternateThreshold = alternateThreshold.replaceAll("^\"|\"$", "");
-        if(alternateThreshold == "TRUE" || alternateThreshold == "YES")
-            this.alternateThreshold = true;
-        else
-            this.alternateThreshold = false;
+    public void setAlternateThreshold(Boolean alternateThreshold) {
+        this.alternateThreshold = alternateThreshold;
     }
 
     public void setAlternateTouchdown(Boolean alternateTouchdown) {
         this.alternateTouchdown = alternateTouchdown;
     }
 
-    public void setAlternateFixedDistance(String alternateFixedDistance) {
-        alternateFixedDistance = alternateFixedDistance.replaceAll("^\"|\"$", "");
-        if(alternateFixedDistance == "TRUE" || alternateFixedDistance == "YES")
-            this.alternateFixedDistance = true;
-        else
-            this.alternateFixedDistance = false;
+    public void setAlternateFixedDistance(Boolean alternateFixedDistance) {
+        this.alternateFixedDistance = alternateFixedDistance;
     }
 
-    public void setAlternatePrecision(String alternatePrecision) {
-        alternatePrecision = alternatePrecision.replaceAll("^\"|\"$", "");
-        if(alternatePrecision == "TRUE" || alternatePrecision == "YES")
-            this.alternatePrecision = true;
-        else
-            this.alternatePrecision = false;
+    public void setAlternatePrecision(Boolean alternatePrecision) {
+        this.alternatePrecision = alternatePrecision;
     }
 
-    public void setLeadingZeroIdent(String leadingZeroIdent) {
-        leadingZeroIdent = leadingZeroIdent.replaceAll("^\"|\"$", "");
-        if(leadingZeroIdent == "TRUE" || leadingZeroIdent == "YES")
-            this.leadingZeroIdent = true;
-        else
-            this.leadingZeroIdent = false;
+    public void setLeadingZeroIdent(Boolean leadingZeroIdent) {
+        this.leadingZeroIdent = leadingZeroIdent;
     }
 
-    public void setNoThresholdEndArrwos(String noThresholdEndArrwos) {
-        noThresholdEndArrwos = noThresholdEndArrwos.replaceAll("^\"|\"$", "");
-        if(noThresholdEndArrwos == "TRUE" || noThresholdEndArrwos == "YES")
-            this.noThresholdEndArrwos = true;
-        else
-            this.noThresholdEndArrwos = false;
+    public void setNoThresholdEndArrwos(Boolean noThresholdEndArrwos) {
+        this.noThresholdEndArrwos = noThresholdEndArrwos;
     }
 
-    public void setEdges(String edges) {
-        edges = edges.replaceAll("^\"|\"$", "");
-        if(edges == "TRUE" || edges == "YES")
-            this.edges = true;
-        else
-            this.edges = false;
+    public void setEdges(Boolean edges) {
+        this.edges = edges;
     }
 
-    public void setThreshold(String threshold) {
-        threshold = threshold.replaceAll("^\"|\"$", "");
-        if(threshold == "TRUE" || threshold == "YES")
-            this.threshold = true;
-        else
-            this.threshold = false;
+    public void setThreshold(Boolean threshold) {
+        this.threshold = threshold;
     }
 
-    public void setFixed(String fixed) {
-        fixed = fixed.replaceAll("^\"|\"$", "");
-        if(fixed == "TRUE" || fixed == "YES")
-            this.fixed = true;
-        else
-            this.fixed = false;
+    public void setFixed(Boolean fixed) {
+        this.fixed = fixed;
     }
 
-    public void setTouchdown(String touchdown) {
-        touchdown = touchdown.replaceAll("^\"|\"$", "");
-        if(touchdown == "TRUE" || touchdown == "YES")
-            this.touchdown = true;
-        else
-            this.touchdown = false;
+    public void setTouchdown(Boolean touchdown) {
+        this.touchdown = touchdown;
     }
 
-    public void setAlternateTouchdown(String touchdown) {
-        touchdown = touchdown.replaceAll("^\"|\"$", "");
-        if(touchdown == "TRUE" || touchdown == "YES")
-            this.alternateTouchdown = true;
-        else
-            this.alternateTouchdown = false;
+    public void setDashes(Boolean dashes) {
+        this.dashes = dashes;
     }
 
-    public void setDashes(String dashes) {
-        dashes = dashes.replaceAll("^\"|\"$", "");
-        if(dashes == "TRUE" || dashes == "YES")
-            this.dashes = true;
-        else
-            this.dashes = false;
+    public void setIdent(Boolean ident) {
+        this.ident = ident;
     }
 
-    public void setIdent(String ident) {
-        ident = ident.replaceAll("^\"|\"$", "");
-        if(ident == "TRUE" || ident == "YES")
-            this.ident = true;
-        else
-            this.ident = false;
+    public void setPrecision(Boolean precision) {
+        this.precision = precision;
     }
 
-    public void setPrecision(String precision) {
-        precision = precision.replaceAll("^\"|\"$", "");
-        if(precision == "TRUE" || precision == "YES")
-            this.precision = true;
-        else
-            this.precision = false;
+    public void setEdgePavement(Boolean edgePavement) {
+        this.edgePavement = edgePavement;
     }
 
-    public void setEdgePavement(String edgePavement) {
-        edgePavement = edgePavement.replaceAll("^\"|\"$", "");
-        if(edgePavement == "TRUE" || edgePavement == "YES")
-            this.edgePavement = true;
-        else
-            this.edgePavement = false;
+    public void setSingleEnd(Boolean singleEnd) {
+        this.singleEnd = singleEnd;
     }
 
-    public void setSingleEnd(String singleEnd) {
-        singleEnd = singleEnd.replaceAll("^\"|\"$", "");
-        if(singleEnd == "TRUE" || singleEnd == "YES")
-            this.singleEnd = true;
-        else
-            this.singleEnd = false;
+    public void setPrimaryClosed(Boolean primaryClosed) {
+        this.primaryClosed = primaryClosed;
     }
 
-    public void setPrimaryClosed(String primaryClosed) {
-        primaryClosed = primaryClosed.replaceAll("^\"|\"$", "");
-        if(primaryClosed == "TRUE" || primaryClosed == "YES")
-            this.primaryClosed = true;
-        else
-            this.primaryClosed = false;
+    public void setSecondaryClosed(Boolean secondaryClosed) {
+        this.secondaryClosed = secondaryClosed;
     }
 
-    public void setSecondaryClosed(String secondaryClosed) {
-        secondaryClosed = secondaryClosed.replaceAll("^\"|\"$", "");
-        if(secondaryClosed == "TRUE" || secondaryClosed == "YES")
-            this.secondaryClosed = true;
-        else
-            this.secondaryClosed = false;
+    public void setPrimaryStol(Boolean primaryStol) {
+        this.primaryStol = primaryStol;
     }
 
-    public void setPrimaryStol(String primaryStol) {
-        primaryStol = primaryStol.replaceAll("^\"|\"$", "");
-        if(primaryStol == "TRUE" || primaryStol == "YES")
-            this.primaryStol = true;
-        else
-            this.primaryStol = false;
-    }
-
-    public void setSecondaryStol(String secondaryStol) {
-        secondaryStol = secondaryStol.replaceAll("^\"|\"$", "");
-        if(secondaryStol == "TRUE" || secondaryStol == "YES")
-            this.secondaryStol = true;
-        else
-            this.secondaryStol = false;
+    public void setSecondaryStol(Boolean secondaryStol) {
+        this.secondaryStol = secondaryStol;
     }
 }

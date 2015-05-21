@@ -91,102 +91,51 @@ public class ILS {
         System.lineSeparator();
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
     public void setAlt(String alt) {
-        this.alt = alt.replaceAll("^\"|\"$", "");
+        this.alt = alt;
     }
 
-    public void setHeading(String heading) {
-        heading = heading.replaceAll("^\"|\"$", "");
-        this.heading = Float.parseFloat(heading);
-
-        if(this.heading < 0 || this.heading > 360){
-            this.heading = Float.NaN;
-            throw new IllegalArgumentException("Heading is out of bounds (values between 0.0 and 360 are allowed)");
-        }
+    public void setHeading(float heading) {
+        this.heading = heading;
     }
 
-    public void setFrequency(String frequency) {
-        frequency = frequency.replaceAll("^\"|\"$", "");
-        this.frequency = Float.parseFloat(frequency);
-
-        if(this.frequency < 108 || this.frequency > 136.992){
-            this.frequency = Float.NaN;
-            throw new IllegalArgumentException("Frequency is out of bounds (values between 108.0 and 136.992 are allowed)");
-        }
+    public void setFrequency(float frequency) {
+        this.frequency = frequency;
     }
 
     public void setEnd(String end) {
-        this.end = end.replaceAll("^\"|\"$", "");
+        this.end = end;
     }
 
     public void setRange(String range) {
-        this.range = range.replaceAll("^\"|\"$", "");
+        this.range = range;
     }
 
-    public void setMagvar(String magvar) {
-        magvar = magvar.replaceAll("^\"|\"$", "");
-        this.magvar = Float.parseFloat(magvar);
-
-        if(this.magvar < -360 || this.magvar > 360){
-            this.magvar = Float.NaN;
-            throw new IllegalArgumentException("Magvar is out of bounds (values between -360 and 360 are allowed)");
-        }
+    public void setMagvar(float magvar) {
+        this.magvar = magvar;
     }
 
     public void setIdent(String ident) {
-        this.ident = ident.replaceAll("^\"|\"$", "");
-
-        if(this.ident.length() > 5){
-            this.ident = null;
-            throw new IllegalArgumentException("Ident is out of bounds (5 char at maximum)");
-        }
+        this.ident = ident;
     }
 
-    public void setWidth(String width) {
-        width = width.replaceAll("^\"|\"$", "");
-        this.width = Float.parseFloat(width);
-
-        if(this.width < 0 || this.width > 360){
-            this.width = Float.NaN;
-            throw new IllegalArgumentException("Width is out of bounds (values between 0 and 360 are allowed)");
-        }
+    public void setWidth(float width) {
+        this.width = width;
     }
 
     public void setName(String name) {
-        this.name = name.replaceAll("^\"|\"$", "");
-
-        if(this.name.length() > 48){
-            this.name = null;
-            throw new IllegalArgumentException("Name is out of bounds (48 char at maximum)");
-        }
+        this.name = name;
     }
 
-    public void setBackCourse(String backCourse) {
-        backCourse = backCourse.replaceAll("^\"|\"$", "");
-
-        if(backCourse == "TRUE" || backCourse == "YES")
-            this.backCourse = true;
-        else
-            this.backCourse = false;
+    public void setBackCourse(Boolean backCourse) {
+        this.backCourse = backCourse;
     }
 }

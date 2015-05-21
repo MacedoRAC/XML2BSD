@@ -61,51 +61,31 @@ public class TaxiwayPoint {
         System.lineSeparator();
     }
 
-    public void setIndex(String index) {
-        index = index.replaceAll("^\"|\"$", "");
-        this.index = Integer.parseInt(index);
-
-        if(this.index < 0 || this.index > 3999){
-            this.index = null;
-            throw new IllegalArgumentException("Index is out of bounds (values between 0 and 3999 are allowed)");
-        }
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public void setType(String type) {
-        this.type = type.replaceAll("^\"|\"$", "");
+        this.type = type;
     }
 
     public void setOrientation(String orientation) {
-        this.orientation = orientation.replaceAll("^\"|\"$", "");
+        this.orientation = orientation;
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
-    public void setBiasX(String biasX) {
-        biasX = biasX.replaceAll("^\"|\"$", "");
-        this.biasX = Float.parseFloat(biasX);
+    public void setBiasX(float biasX) {
+        this.biasX = biasX;
     }
 
-    public void setBiasZ(String biasZ) {
-        biasZ = biasZ.replaceAll("^\"|\"$", "");
-        this.biasZ = Float.parseFloat(biasZ);
+    public void setBiasZ(float biasZ) {
+        this.biasZ = biasZ;
     }
 }

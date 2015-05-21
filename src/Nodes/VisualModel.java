@@ -49,37 +49,19 @@ public class VisualModel {
 
     }
 
-    public void setHeading(String heading) {
-        heading = heading.replaceAll("^\"|\"$", "");
-        this.heading = Float.parseFloat(heading);
-
-        if(this.heading < 0 || this.heading > 360){
-            this.heading = Float.NaN;
-            throw new IllegalArgumentException("Heading is out of bounds (values between 0.0 and 360 are allowed)");
-        }
+    public void setHeading(float heading) {
+        this.heading = heading;
     }
 
     public void setImageComplexity(String imageComplexity) {
-        this.imageComplexity = imageComplexity.replaceAll("^\"|\"$", "");
+        this.imageComplexity = imageComplexity;
     }
 
     public void setName(String name) {
-        name = name.replaceAll("^\"|\"$", "");
-        String[] parts = name.split("-");
-
-        if(parts[0].length() != 8 || parts[1].length() != 4 || parts[2].length() != 4 || parts[3].length() != 4 || parts[4].length() != 12){
-            this.name = null;
-            throw new IllegalArgumentException("Invalid name syntax (nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn)");
-        }
+        this.name = name;
     }
 
     public void setInstanceID(String instanceID) {
-        instanceID = instanceID.replaceAll("^\"|\"$", "");
-        String[] parts = instanceID.split("-");
-
-        if(parts[0].length() != 8 || parts[1].length() != 4 || parts[2].length() != 4 || parts[3].length() != 4 || parts[4].length() != 12){
-            this.instanceID = null;
-            throw new IllegalArgumentException("Invalid instanceID syntax (nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn)");
-        }
+        this.instanceID = instanceID;
     }
 }

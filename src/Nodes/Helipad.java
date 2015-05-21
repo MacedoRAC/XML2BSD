@@ -101,101 +101,55 @@ public class Helipad {
         System.lineSeparator();
     }
 
-    public void setLat(String lat) {
-        lat = lat.replaceAll("^\"|\"$", "");
-        this.lat = Float.parseFloat(lat);
-
-        if(this.lat < -90 || this.lat > 90){
-            this.lat = Float.NaN;
-            throw new IllegalArgumentException("Lat is out of bounds (values between -90 and 90 are allowed)");
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public void setLon(String lon) {
-        lon = lon.replaceAll("^\"|\"$", "");
-        this.lon = Float.parseFloat(lon);
-
-        if(this.lon < -180 || this.lon > 180){
-            this.lon = Float.NaN;
-            throw new IllegalArgumentException("Lon is out of bounds (values between -180 and 180 are allowed)");
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
     public void setAlt(String alt) {
-        this.alt = alt.replaceAll("^\"|\"$", "");
+        this.alt = alt;
     }
 
     public void setSurface(String surface) {
-        this.surface = surface.replaceAll("^\"|\"$", "");
+        this.surface = surface;
     }
 
-    public void setHeading(String heading) {
-        heading = heading.replaceAll("^\"|\"$", "");
-        this.heading = Float.parseFloat(heading);
-
-        if(this.heading < 0 || this.heading > 360){
-            this.heading = Float.NaN;
-            throw new IllegalArgumentException("Heading is out of bounds (values between 0 and 360 are allowed)");
-        }
+    public void setHeading(float heading) {
+        this.heading = heading;
     }
 
     public void setLength(String length) {
-        this.length = length.replaceAll("^\"|\"$", "");
+        this.length = length;
     }
 
     public void setWidth(String width) {
-        this.width = width.replaceAll("^\"|\"$", "");
+        this.width = width;
     }
 
     public void setType(String type) {
-        this.type = type.replaceAll("^\"|\"$", "");
+        this.type = type;
     }
 
-    public void setClosed(String closed) {
-        closed = closed.replaceAll("^\"|\"$", "");
-
-        if(closed == "TRUE" || closed == "YES")
-            this.closed = true;
-        else
-            this.closed = false;
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
     }
 
-    public void setTransparent(String transparent) {
-        transparent = transparent.replaceAll("^\"|\"$", "");
-
-        if(transparent == "TRUE" || transparent == "YES")
-            this.transparent = true;
-        else
-            this.transparent = false;
+    public void setTransparent(Boolean transparent) {
+        this.transparent = transparent;
     }
 
-    public void setRed(String red) {
-        red = red.replaceAll("^\"|\"$", "");
-        this.red = Integer.parseInt(red);
-
-        if(this.red < 0 || this.red > 255){
-            this.red = null;
-            throw new IllegalArgumentException("Red is out of bounds (integer between 0 and 255 are allowed)");
-        }
+    public void setRed(Integer red) {
+        this.red = red;
     }
 
-    public void setGreen(String green) {
-        green = green.replaceAll("^\"|\"$", "");
-        this.green = Integer.parseInt(green);
-
-        if(this.green < 0 || this.green > 255){
-            this.green = null;
-            throw new IllegalArgumentException("Green is out of bounds (integer between 0 and 255 are allowed)");
-        }
+    public void setGreen(Integer green) {
+        this.green = green;
     }
 
-    public void setBlue(String blue) {
-        blue = blue.replaceAll("^\"|\"$", "");
-        this.blue = Integer.parseInt(blue);
-
-        if(this.blue < 0 || this.blue > 255){
-            this.blue = null;
-            throw new IllegalArgumentException("Blue is out of bounds (integer between 0 and 255 are allowed)");
-        }
+    public void setBlue(Integer blue) {
+        this.blue = blue;
     }
 }
