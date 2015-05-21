@@ -5,6 +5,14 @@ import java.lang.System;
 
 public class MyCompListener extends compBaseListener {
 
+    boolean lat_attr = false;
+    boolean lon_attr = false;
+    boolean alt_attr = false;
+    boolean ident_attr = false;
+    boolean tscalat_attr = false;
+    boolean radius_attr = false;
+
+
     @Override
     public void enterValue_string(compParser.Value_stringContext ctx) {
         String str = ctx.getText();
@@ -18,6 +26,7 @@ public class MyCompListener extends compBaseListener {
         float val = Float.parseFloat(str);
         if (val > 90 || val< -90)
             System.out.println("lattitude value out of range");
+        lat_attr = true;
     }
 
     @Override
@@ -26,6 +35,12 @@ public class MyCompListener extends compBaseListener {
         float val = Float.parseFloat(str);
         if(val > 90 || val < -90)
             System.out.println("Longitude value out of range");
+        lon_attr = true;
+    }
+
+    @Override
+    public void enterValue_alt(compParser.Value_altContext ctx) {
+        alt_attr = true;
     }
 
     @Override
@@ -37,11 +52,18 @@ public class MyCompListener extends compBaseListener {
     }
 
     @Override
+    public void enterValue_radius(compParser.Value_radiusContext ctx) {
+        radius_attr = true;
+    }
+
+    @Override
     public void enterValue_tscalar(compParser.Value_tscalarContext ctx) {
         String str = ctx.getText();
         float val = Float.parseFloat(str);
         if(val < 0.01 || val > 1.0)
             System.out.println("Traffic Scalar value out of range");
+        else
+            tscalat_attr = true;
     }
 
     @Override
@@ -212,5 +234,27 @@ public class MyCompListener extends compBaseListener {
             System.out.println("Taxiname value out of range");
     }
 
+
+    // VERIFICA OBRIGATURIEDADE DE ATRIBUTOS
+    @Override
+    public void enterAttributes(compParser.AttributesContext ctx) {
+        lat_attr = false;
+        lon_attr = false;
+        alt_attr = false;
+        ident_attr = false;
+        tscalat_attr = false;
+        radius_attr = false;
+    }
+
+    @Override
+    public void exitAttributes(compParser.AttributesContext ctx) {
+        if(lat_attr == false)
+            System.out.println("Latitude atribute is missing !");
+        if(lon_attr == false)
+            System.out.println("Longitude attribute is missing !");
+        if(alt_attr == false)
+            System.out.println("Altitude atribute is missing !");
+
+    }
 
 }
