@@ -2,8 +2,11 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.System;
+import Nodes.*;
 
 public class MyCompListener extends compBaseListener {
+
+    Airport airport = new Airport();
 
     boolean lat_attr = false;
     boolean lon_attr = false;
@@ -248,12 +251,32 @@ public class MyCompListener extends compBaseListener {
 
     @Override
     public void exitAttributes(compParser.AttributesContext ctx) {
-        if(lat_attr == false)
+        if(lat_attr == false) {
             System.out.println("Latitude atribute is missing !");
-        if(lon_attr == false)
+            return -1;
+        }
+        if(lon_attr == false) {
             System.out.println("Longitude attribute is missing !");
-        if(alt_attr == false)
+            return -1;
+        }
+        if(alt_attr == false) {
             System.out.println("Altitude atribute is missing !");
+            return -1;
+        }
+        if(ident_attr == false) {
+            System.out.println("Ident atribute is missing !");
+            return -1;
+        }
+        if(radius_attr == false) {
+            System.out.println("airportTestRadius attribute is missing !");
+            return -1;
+        }
+        if(tscalat_attr == false) {
+            System.out.println("trafficScalar atribute is missing !");
+            return -1;
+        }
+
+        airport
 
     }
 
